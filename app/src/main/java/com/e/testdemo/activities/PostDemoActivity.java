@@ -46,6 +46,11 @@ public class PostDemoActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+
+        if (!AppUtils.isInternetConnected(this)) {
+            Toast.makeText(this, getString(R.string.no_internet), Toast.LENGTH_LONG).show();
+            return;
+        }
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 

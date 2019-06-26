@@ -2,6 +2,10 @@ package com.e.testdemo.utils;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
+import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class AppUtils {
 
@@ -28,6 +32,24 @@ public class AppUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    /**
+     * @param context Application Context
+     * @return true if connected with active internet else false
+     */
+    public static boolean isInternetConnected(Context context) {
+        try {
+            if (context != null) {
+                ConnectivityManager connectivityManager =
+                        (ConnectivityManager) context
+                                .getSystemService(CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                return networkInfo != null && networkInfo.isConnected();
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
         }
     }
 
