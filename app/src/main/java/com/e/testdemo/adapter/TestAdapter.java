@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.e.testdemo.R;
+import com.e.testdemo.models.Comment;
 import com.e.testdemo.models.Post;
 import com.squareup.picasso.Picasso;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyViewHolder> {
 
     private List<Post> DtaAdapter;
+    private  List<Comment>commentAdapter;
     Context context;
     @NonNull
     @Override
@@ -27,15 +29,19 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyViewHolder> 
         return new MyViewHolder(itemView);
     }
 
-    public TestAdapter(List<Post> DtaAdapter, int recycler_item, Context applicationContext) {
+    public TestAdapter(List<Post> DtaAdapter,  int recycler_item, Context applicationContext) {
         this.context = applicationContext;
         this.DtaAdapter= DtaAdapter;
     }
 
     @Override
     public void onBindViewHolder(@NonNull TestAdapter.MyViewHolder myViewHolder, int position) {
-        Post post = DtaAdapter.get(position);
-        myViewHolder.textView1.setText(post.getTitle());
+        Post bestSelling = DtaAdapter.get(position);
+
+        myViewHolder.textView1.setText(bestSelling.getTitle());
+
+
+
 
 
 
@@ -50,10 +56,11 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView1;
+        private TextView textView1,textView2;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textView1 = itemView.findViewById(R.id.name1);
+            
 
 
 
